@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Copper Kettle Bistro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ground: #f7f1e8;
+    --ink: #2b2118;
+    --muted: #6d5d4e;
+    --copper: #b4632f;
+    --copper-deep: #8a4720;
+    --card: #fffaf3;
+    --line: #e4d6c4;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font: 16px/1.6 "Work Sans", system-ui, sans-serif;
+  }
+  header {
+    padding: 56px 16px 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .mark {
+    display: inline-block;
+    width: 44px; height: 44px;
+    border-radius: 50% 50% 46% 46%;
+    background: var(--copper);
+    margin-bottom: 14px;
+  }
+  h1 {
+    font: 700 clamp(2.2rem, 6vw, 3.4rem)/1.05 "Fraunces", Georgia, serif;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .tag { color: var(--muted); margin: 10px 0 0; }
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 16px 64px;
+    display: grid;
+    gap: 32px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 820px) { main { grid-template-columns: 1fr 1.1fr; } }
+  h2 { font: 600 1.5rem/1.2 "Fraunces", Georgia, serif; margin: 0 0 14px; }
+  .menu dl { margin: 0; display: grid; gap: 12px; }
+  .menu dt { font-weight: 600; display: flex; justify-content: space-between; gap: 12px; }
+  .menu dd { margin: 2px 0 0; color: var(--muted); font-size: 0.93rem; }
+  .price { font-variant-numeric: tabular-nums; color: var(--copper-deep); }
+  .hours { margin-top: 22px; font-size: 0.93rem; color: var(--muted); }
+  form, .confirm {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 24px;
+  }
+  .field { display: grid; gap: 6px; margin-bottom: 16px; }
+  label { font-weight: 600; font-size: 0.93rem; }
+  select, input {
+    font: inherit;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--ink);
+  }
+  select:focus, input:focus, button:focus-visible { outline: 2px solid var(--copper); outline-offset: 1px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  button {
+    font: 600 1rem "Work Sans", sans-serif;
+    width: 100%;
+    padding: 12px;
+    border: 0;
+    border-radius: 6px;
+    background: var(--copper);
+    color: #fff;
+    cursor: pointer;
+  }
+  button:hover { background: var(--copper-deep); }
+  .error { color: #a12a1a; font-size: 0.9rem; margin: 0 0 12px; min-height: 1.2em; }
+  .confirm[hidden] { display: none; }
+  .code {
+    font: 700 1.6rem "Fraunces", Georgia, serif;
+    color: var(--copper-deep);
+    letter-spacing: 0.04em;
+  }
+  footer {
+    text-align: center;
+    padding: 24px 16px 40px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+<header>
+  <span class="mark" aria-hidden="true"></span>
+  <h1>Copper Kettle Bistro</h1>
+  <p class="tag">Seasonal lunch and dinner, 212 Harbor Street</p>
+</header>
+
+<main>
+  <section class="menu" aria-labelledby="menu-title">
+    <h2 id="menu-title">Lunch menu</h2>
+    <dl>
+      <div><dt>Roast tomato soup <span class="price">$9</span></dt><dd>Basil oil, grilled sourdough</dd></div>
+      <div><dt>Copper Kettle burger <span class="price">$17</span></dt><dd>Aged cheddar, onion jam, fries</dd></div>
+      <div><dt>Market fish <span class="price">$24</span></dt><dd>Lemon butter, new potatoes, greens</dd></div>
+      <div><dt>Mushroom risotto <span class="price">$19</span></dt><dd>Parmesan, thyme, crispy shallots</dd></div>
+      <div><dt>Apple tart <span class="price">$8</span></dt><dd>Vanilla cream</dd></div>
+    </dl>
+    <p class="hours">Lunch daily 11:30 to 14:30. Dinner 17:30 to 22:00.</p>
+  </section>
+
+  <section aria-labelledby="book-title">
+    <form id="booking" novalidate>
+      <h2 id="book-title">Reserve a table</h2>
+      <div class="field">
+        <label for="day">Day</label>
+        <select id="day" name="day" required></select>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="time">Time</label>
+          <select id="time" name="time" required>
+            <option value="">Choose a time</option>
+            <option>11:30</option><option>12:00</option><option>12:30</option>
+            <option>13:00</option><option>13:30</option><option>14:00</option>
+            <option>17:30</option><option>18:00</option><option>18:30</option>
+            <option>19:00</option><option>19:30</option><option>20:00</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="party">Guests</label>
+          <select id="party" name="party" required>
+            <option value="">Choose</option>
+            <option>1</option><option>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="name">Name for the reservation</label>
+        <input id="name" name="name" autocomplete="off" required>
+      </div>
+      <p class="error" id="error" role="alert"></p>
+      <button type="submit">Reserve table</button>
+    </form>
+
+    <div class="confirm" id="confirm" hidden role="status">
+      <h2>Your table is booked</h2>
+      <p id="summary"></p>
+      <p>Confirmation number</p>
+      <p class="code" id="code"></p>
+      <p>See you soon.</p>
+    </div>
+  </section>
+</main>
+
+<footer>A sample website made for a ForgeAI product demo. Copper Kettle Bistro is not a real restaurant and no reservation is made.</footer>
+
+<script>
+  const day = document.getElementById('day');
+  const names = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  day.add(new Option('Choose a day', ''));
+  for (let i = 0; i < 14; i++) {
+    const d = new Date();
+    d.setDate(d.getDate() + i);
+    const label = `${names[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}`;
+    day.add(new Option(label, label));
+  }
+
+  document.getElementById('booking').addEventListener('submit', event => {
+    event.preventDefault();
+    const form = event.target;
+    const error = document.getElementById('error');
+    const missing = ['day', 'time', 'party', 'name'].filter(id => !form[id].value.trim());
+    if (missing.length) {
+      error.textContent = `Please fill in: ${missing.join(', ')}.`;
+      return;
+    }
+    error.textContent = '';
+    const code = 'CK-' + Math.floor(100000 + Math.random() * 900000);
+    document.getElementById('summary').textContent =
+      `${form.day.value} at ${form.time.value}, ${form.party.value} guests, under ${form.name.value.trim()}.`;
+    document.getElementById('code').textContent = code;
+    form.hidden = true;
+    document.getElementById('confirm').hidden = false;
+  });
+</script>
+</body>
+</html>
